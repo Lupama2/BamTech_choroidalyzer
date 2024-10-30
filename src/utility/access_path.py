@@ -9,14 +9,14 @@ repo_directory = os.getcwd()
 
 project_root_father = os.path.abspath(os.path.join(os.path.dirname("__file__"), '..'))
 lib_root = os.path.abspath(os.path.join(project_root_father, 'lib'))
-# models_root = os.path.abspath(os.path.join(project_root_father, 'models'))
+models_root = os.path.abspath(os.path.join(project_root_father, 'models'))
 utility_root = os.path.abspath(os.path.join(project_root_father, 'utility'))
 
 project_root_grandfather = os.path.abspath(os.path.join(os.path.dirname("__file__"), '..', '..'))
 
 data_root = os.path.abspath(os.path.join(project_root_grandfather, 'data'))
 
-project_roots = [project_root_father, lib_root, utility_root, project_root_grandfather, data_root] #models_root
+project_roots = [project_root_father, lib_root, utility_root, project_root_grandfather, data_root, models_root]
 
 # Add the project root to the Python path
 for root in project_roots:
