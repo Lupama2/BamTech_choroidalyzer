@@ -13,7 +13,7 @@ def gray_scale(file, change_name = True):
         #Aplico iterativamente gray_scale
         temp_files = []
         for f in file:
-            temp_files.append(gray_scale(f))
+            temp_files.append(gray_scale(f, change_name))
             
         return temp_files
     
@@ -29,14 +29,17 @@ def gray_scale(file, change_name = True):
         #Change last folder to preprocessed
         folder[-1] = "preprocessed"
 
-        #From file extract the name without extension
-        name = file.split("/")[-1].split(".")[0]
-
-        #From file extract extension
-        extension = file.split("/")[-1].split(".")[1]
+        file = "/".join(folder) + "/" + file.split("/")[-1]
 
         #Create temp_file as folder/name_temp.extension
         if change_name:
+
+            #From file extract the name without extension
+            name = file.split("/")[-1].split(".")[0]
+
+            #From file extract extension
+            extension = file.split("/")[-1].split(".")[1]
+
             temp_file = "/".join(folder) + "/" + name + "_temp." + extension
         else:
             temp_file = file
