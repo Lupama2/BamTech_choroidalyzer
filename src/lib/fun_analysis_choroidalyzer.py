@@ -26,10 +26,9 @@ def analysis_choroidalyzer(file):
         metrics = choroidalyzer.analyze(file) #, scale=(11.49, 3.87)
 
         # choroidalyzer also has a basic plotting function to inspect segmentation outputs
-        choroidalyzer.predict_and_plot(file)
+        fig = choroidalyzer.predict_and_plot(file)
 
         #Save plot shown
-                
-
+        fig.savefig(file)
 
         return file, metrics

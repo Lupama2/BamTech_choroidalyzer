@@ -168,3 +168,5 @@ class Choroidalyzer:
 
         plt.tight_layout()
         plt.show()
+
+        return fig    
