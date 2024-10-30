@@ -11,7 +11,7 @@ def crop(file, coordenadas = (504, 0, 1008, 495)):
         #Aplico iterativamente scissors
         files = []
         for f in file:
-            files.append(crop(f, change_name, coordenadas))
+            files.append(crop(f, coordenadas))
 
         return files
     else: 
