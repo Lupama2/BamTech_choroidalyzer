@@ -18,7 +18,8 @@ conda activate choroidalyzer
 Luego, instalar las dependencias necesarias.
 
 ```
-jjj
+cd path/to/directory
+conda env update --file environment.yml
 ```
 
 Si se desea utilizar jupyter lab, instalarlo opcionalmente.
