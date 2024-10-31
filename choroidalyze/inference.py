@@ -132,6 +132,7 @@ class Choroidalyzer:
 
     @torch.inference_mode()
     def predict_and_plot(self, img_path, thresholds=None):
+
         thresholds = thresholds or self.default_thresholds
         import matplotlib.pyplot as plt
         preds = self.predict(img_path)
@@ -168,3 +169,5 @@ class Choroidalyzer:
 
         plt.tight_layout()
         plt.show()
+
+        return fig    
