@@ -168,6 +168,7 @@ class Choroidalyzer:
             _.axis('off')
 
         plt.tight_layout()
-        plt.show()
+        # plt.show()
+        # plt.close(fig)  # Cierra el gráfico después de mostrarlo
 
-        return fig    
+        return fig
