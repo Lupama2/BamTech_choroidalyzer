@@ -172,3 +172,46 @@ class Choroidalyzer:
         # plt.close(fig)  # Cierra el gráfico después de mostrarlo
 
         return fig
+    
+    @torch.inference_mode()
+    def plot_together(self, img_path, thresholds=None):
+
+        thresholds = thresholds or self.default_thresholds
+        import matplotlib.pyplot as plt
+        preds = self.predict(img_path)
+
+        fov_loc = self.process_fovea_prediction(preds.unsqueeze(0))
+
+        if thresholds is not None:
+            if isinstance(thresholds, (int, float)):
+                thresholds = (thresholds, thresholds, thresholds)
+            preds = [_.ge(thresholds[i]) for i, _ in enumerate(preds)]
+
+        fig, ax = plt.subplots()
+        img = self._load_image_if_needed(img_path)
+
+
+        ax.imshow(img.permute(1, 2, 0), cmap='gray')
+        ax.set_title('Original Image')
+
+        ax.imshow(preds[0], cmap='gray', alpha=0.3, label = 'Region')
+
+        ax.imshow(preds[1], cmap='gray', alpha=0.3, label = 'Vessel')
+
+        ax.imshow(preds[2], cmap='gray', alpha=0.3, label = 'Fovea')
+        ax.axvline(fov_loc[0], color='r')
+        ax.axhline(fov_loc[1], color='r')
+ 
+
+        ax.axvline(fov_loc[0], color='r', alpha=0.1)
+        ax.axhline(fov_loc[1], color='r', alpha=0.1)
+
+        ax.set_legend()
+
+        ax.axis('off')
+
+        plt.tight_layout()
+        # plt.show()
+        # plt.close(fig)  # Cierra el gráfico después de mostrarlo
+
+        return fig
